@@ -71,10 +71,11 @@ var startBtn = document.getElementById("startButton");
 var quiz = document.getElementById("quiz");
 var nextBtn = document.getElementById("next");
 var question = document.getElementById("question");
-var aText = document.getElementById("answer1");
-var bText = document.getElementsByClassName("answerText2");
-var cText = document.getElementsByClassName("answerText3");
-var dText = document.getElementsByClassName("answerText4");
+
+var aText = document.getElementById("label1");
+var bText = document.getElementById("label2");
+var cText = document.getElementById("label3");
+var dText = document.getElementById("label4");
 
 startBtn.addEventListener("click", startQuiz);
 
@@ -84,7 +85,10 @@ function startQuiz() {
   nextBtn.classList.remove("hide");
   var currentQ = 0;
   question.innerText = barbQuestions[currentQ].q;
-  aText.innerText = barbQuestions[0].a;
+  aText.innerText = barbQuestions[currentQ].a;
+  bText.innerText = barbQuestions[currentQ].b;
+  cText.innerText = barbQuestions[currentQ].c;
+  dText.innerText = barbQuestions[currentQ].d;
 }
 
 function nextQuestion() {}
