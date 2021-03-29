@@ -65,10 +65,30 @@ var barbQuestions = [
     d: "Trisha",
   },
 ];
-var quizBox = document.getElementById("quiz");
-var resultsBox = document.getElementById("results");
-var submit = document.getElementById("submit");
 
-function quiz() {
-  for (i = 0; i < barbQuestions.length; i++) {}
+var answers = ["c", "b", "a", "d", "b", "c", "d", "a", "b"];
+var startBtn = document.getElementById("startButton");
+var quiz = document.getElementById("quiz");
+var nextBtn = document.getElementById("next");
+var question = document.getElementById("question");
+var aText = document.getElementById("answer1");
+var bText = document.getElementsByClassName("answerText2");
+var cText = document.getElementsByClassName("answerText3");
+var dText = document.getElementsByClassName("answerText4");
+
+startBtn.addEventListener("click", startQuiz);
+
+function startQuiz() {
+  startBtn.classList.add("hide");
+  quiz.classList.remove("hide");
+  nextBtn.classList.remove("hide");
+  var currentQ = 0;
+  question.innerText = barbQuestions[currentQ].q;
+  aText.innerText = barbQuestions[0].a;
 }
+
+function nextQuestion() {}
+
+function checkResults() {}
+
+console.log(barbQuestions[0].a);

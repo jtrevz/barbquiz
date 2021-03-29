@@ -1,8 +1,16 @@
+:root {
+  --lPink: #ffd7d7;
+}
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 50px;
+  height: 80px;
+  background-color: var(--lPink);
+  border-radius: 10px;
+}
+header div {
+  padding: 15px;
 }
 
 .hide {
@@ -11,6 +19,7 @@ header {
 
 body {
   display: block;
+  font-family: "Arial Rounded MT Bold";
 }
 
 .content {
@@ -28,4 +37,33 @@ body {
 
 button {
   display: inline-block;
+  font-family: "Arial Rounded MT Bold";
+  padding: 10px 20px;
+  margin: 5px;
+}
+
+#question {
+  font-size: 25px;
+  margin: 10px;
+}
+
+.choice {
+  margin: 10px;
+}
+
+button {
+  background-color: var(--lPink);
+  border-radius: 5px;
+  border-style: outset;
+}
+
+#startButton {
+  font-size: 70px;
+  background-color: var(--lPink);
+  border-radius: 10px;
+  border-style: outset;
+}
+
+img {
+  max-height: 60px;
 }
