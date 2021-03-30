@@ -32,29 +32,22 @@ body {
 }
 
 .content #quiz {
-  max-width: 60%;
+  max-width: 70%;
 }
 
 button {
-  display: inline-block;
+  display: block;
   font-family: "Arial Rounded MT Bold";
   padding: 10px 20px;
   margin: 5px;
+  background-color: var(--lPink);
+  border-radius: 5px;
+  border-style: outset;
 }
 
 #question {
   font-size: 25px;
   margin: 10px;
-}
-
-.choice {
-  margin: 10px;
-}
-
-button {
-  background-color: var(--lPink);
-  border-radius: 5px;
-  border-style: outset;
 }
 
 #startButton {
@@ -66,4 +59,8 @@ button {
 
 img {
   max-height: 60px;
+}
+
+.choices button {
+  margin-left: 20px;
 }

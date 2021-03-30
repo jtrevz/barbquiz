@@ -72,10 +72,14 @@ var quiz = document.getElementById("quiz");
 var nextBtn = document.getElementById("next");
 var question = document.getElementById("question");
 
-var aText = document.getElementById("label1");
-var bText = document.getElementById("label2");
-var cText = document.getElementById("label3");
-var dText = document.getElementById("label4");
+var aButton = document.getElementById("label1");
+var bButton = document.getElementById("label2");
+var cButton = document.getElementById("label3");
+var dButton = document.getElementById("label4");
+
+var choices = document.getElementsByClassName("choices");
+var currentQ = 0;
+var currentObj = barbQuestions[currentQ];
 
 startBtn.addEventListener("click", startQuiz);
 
@@ -83,16 +87,21 @@ function startQuiz() {
   startBtn.classList.add("hide");
   quiz.classList.remove("hide");
   nextBtn.classList.remove("hide");
-  var currentQ = 0;
-  question.innerText = barbQuestions[currentQ].q;
-  aText.innerText = barbQuestions[currentQ].a;
-  bText.innerText = barbQuestions[currentQ].b;
-  cText.innerText = barbQuestions[currentQ].c;
-  dText.innerText = barbQuestions[currentQ].d;
+  displayQuestion();
 }
 
-function nextQuestion() {}
+function displayQuestion() {
+  question.innerText = barbQuestions[currentQ].q;
+  aButton.innerText = barbQuestions[currentQ].a;
+  bButton.innerText = barbQuestions[currentQ].b;
+  cButton.innerText = barbQuestions[currentQ].c;
+  dButton.innerText = barbQuestions[currentQ].d;
+}
 
-function checkResults() {}
+function checkResults() {
+  var firedBtn = $(this).value();
+  console.log(firedBtn);
+}
 
-console.log(barbQuestions[0].a);
+choices.children().addEventListener("click", checkResults);
+console.log(currentObj);
