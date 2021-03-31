@@ -7,18 +7,22 @@
     <link href="style.css" rel="stylesheet" />
     <title>Barb Quiz</title>
   </head>
-  <header>
-    <div>
-      <img
-        src="https://fontmeme.com/permalink/210329/68445ca3c055a64ad5ade6216c5d1f15.png"
-        alt="barbie-font"
-        border="0"
-      />
-    </div>
-    <div>Timer</div>
-  </header>
+
   <body>
-    <div class="content">
+    <header>
+      <div>
+        <img
+          src="https://fontmeme.com/permalink/210330/9a72fb2ee33905c41aa213c237bfd2ea.png"
+          alt="barbie-font"
+          border="0"
+        />
+      </div>
+      <div id="timer" class="hide">
+        Timer
+        <h2 class="time"></h2>
+      </div>
+    </header>
+    <div id="gameOn" class="content">
       <div><button id="startButton">Start</button></div>
       <div id="quiz" class="hide">
         <div class="choices">
@@ -34,9 +38,33 @@
         <button id="next" class="hide">Next</button>
         <button id="submit" class="hide">Submit</button>
       </div>
-      <div id="results"></div>
+      <div id="right" class="results hide"><h1>Correct!</h1></div>
+      <div id="wrong" class="results hide"><h1>Wrong!</h1></div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <div id="endGameScreen" class="hide">
+      <div class="highScoreBox">
+        <img
+          id="yourScoreBox"
+          src="https://fontmeme.com/permalink/210330/58ade3c10627babf1c4934058c4e8ea1.png"
+          alt="barbie-font"
+          border="0"
+        />
+        <div id="displayScore">
+          <h1 id="pinkScore"></h1>
+        </div>
+        <label for="playerName">Player Name:</label>
+        <textarea id="playerName" name="playerName"></textarea>
+        <button id="playersubmit" class="button">Submit Player Score</button>
+      </div>
+      <div class="highScoreBox">
+        <img
+          id="highScoreBox"
+          src="https://fontmeme.com/permalink/210330/9d23c78385f978ae62f6d5f0ba2ff645.png"
+          alt="barbie-font"
+          border="0"
+        />
+      </div>
+    </div>
     <script src="script.js"></script>
   </body>
 </html>

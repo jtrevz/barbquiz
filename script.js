@@ -68,29 +68,58 @@ var barbQuestions = [
 
 var answers = ["c", "b", "a", "d", "b", "c", "d", "a", "b"];
 var startBtn = document.getElementById("startButton");
+var content = document.getElementById("gameOn");
 var quiz = document.getElementById("quiz");
 var nextBtn = document.getElementById("next");
+var submitBtn = document.getElementById("submit");
 var question = document.getElementById("question");
+var displayEndGameScreen = document.getElementById("endGameScreen");
+var playerSubmitBtn = document.getElementById("playersubmit");
 
 var aButton = document.getElementById("label1");
 var bButton = document.getElementById("label2");
 var cButton = document.getElementById("label3");
 var dButton = document.getElementById("label4");
 
-var choices = document.getElementsByClassName("choices");
+var choices = document.querySelectorAll(".choice");
 var currentQ = 0;
 var currentObj = barbQuestions[currentQ];
+var score = 0;
+var rightDisplay = document.getElementById("right");
+var wrongDisplay = document.getElementById("wrong");
+var firedBtn = "";
+var timeEl = document.querySelector(".time");
+var secondsLeft = 40;
+
+var player = document.getElementById("playerName");
 
 startBtn.addEventListener("click", startQuiz);
 
+function setTime() {
+  var timerInterval = setInterval(function () {
+    secondsLeft--;
+    timeEl.textContent = secondsLeft;
+    // if (secondsLeft === 0) {
+    //   clearInterval(timerInterval);
+    //   sendMessage();
+    // }
+  }, 2000);
+}
+
 function startQuiz() {
+  timeEl.textContent = secondsLeft;
   startBtn.classList.add("hide");
   quiz.classList.remove("hide");
   nextBtn.classList.remove("hide");
+  document.getElementById("timer").classList.remove("hide");
+  setTime();
   displayQuestion();
 }
 
 function displayQuestion() {
+  if (currentQ > 8) {
+    return;
+  }
   question.innerText = barbQuestions[currentQ].q;
   aButton.innerText = barbQuestions[currentQ].a;
   bButton.innerText = barbQuestions[currentQ].b;
@@ -99,9 +128,55 @@ function displayQuestion() {
 }
 
 function checkResults() {
-  var firedBtn = $(this).value();
-  console.log(firedBtn);
+  firedBtn = this.value;
+
+  if (firedBtn === answers[currentQ]) {
+    score++;
+    rightDisplay.classList.remove("hide");
+  } else {
+    wrongDisplay.classList.remove("hide");
+    // timer second penalty
+    secondsLeft = secondsLeft - 10;
+    setTime();
+  }
 }
 
-choices.children().addEventListener("click", checkResults);
-console.log(currentObj);
+choices.forEach(function (choice) {
+  choice.addEventListener("click", checkResults);
+});
+
+function nextQuestion() {
+  if (currentQ > 6) {
+    nextBtn.classList.add("hide");
+    submitBtn.classList.remove("hide");
+  }
+  if (firedBtn === answers[currentQ]) {
+    rightDisplay.classList.add("hide");
+  } else {
+    wrongDisplay.classList.add("hide");
+  }
+  currentQ++;
+  displayQuestion();
+}
+
+function saveNewScore() {
+  var highscore = {
+    player: player.value.trim(),
+    score: score,
+  };
+  localStorage.setItem("highscore", JSON.stringify(highscore));
+  console.log(highscore);
+}
+
+function endGameScreen() {
+  content.classList.remove("content");
+  content.classList.add("hide");
+  displayEndGameScreen.classList.remove("hide");
+  displayEndGameScreen.classList.add("endGameScreen");
+  document.getElementById("timer").classList.add("hide");
+  document.getElementById("pinkScore").textContent = score;
+}
+
+nextBtn.addEventListener("click", nextQuestion);
+submitBtn.addEventListener("click", endGameScreen);
+playerSubmitBtn.addEventListener("click", saveNewScore);

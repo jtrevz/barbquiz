@@ -10,7 +10,7 @@ header {
   border-radius: 10px;
 }
 header div {
-  padding: 15px;
+  padding: 20px;
 }
 
 .hide {
@@ -20,6 +20,7 @@ header div {
 body {
   display: block;
   font-family: "Arial Rounded MT Bold";
+  max-width: 100%;
 }
 
 .content {
@@ -27,12 +28,10 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100vw;
+  width: fill;
   height: 60vh;
-}
-
-.content #quiz {
-  max-width: 70%;
+  margin-top: 20px;
+  padding: 5%;
 }
 
 button {
@@ -46,8 +45,9 @@ button {
 }
 
 #question {
-  font-size: 25px;
+  font-size: 150%;
   margin: 10px;
+  padding: 1%;
 }
 
 #startButton {
@@ -62,5 +62,50 @@ img {
 }
 
 .choices button {
-  margin-left: 20px;
+  margin-left: 40px;
+}
+
+.results h1 {
+  color: #e9609b;
+}
+
+#time h2 {
+  display: flex;
+  justify-content: center;
+  font-size: 15px;
+}
+
+.highScoreBox {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--lPink);
+  padding: 5%;
+  border-radius: 10px;
+  margin: 1%;
+}
+
+.endGameScreen {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 5%;
+}
+
+.highScoreBox button {
+  background-color: #e9609b;
+  color: white;
+  margin: 5%;
+}
+
+.highScoreBox label {
+  margin: 5% 0 5% 0;
+}
+
+.highScoreBox h1 {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  padding: 13%;
+  color: #e9609b;
+  border-radius: 10px;
 }
