@@ -101,10 +101,9 @@ function setTime() {
   var timerInterval = setInterval(function () {
     secondsLeft--;
     timeEl.textContent = secondsLeft;
-    // if (secondsLeft === 0) {
-    //   clearInterval(timerInterval);
-    //   sendMessage();
-    // }
+    if (secondsLeft < 1) {
+      endGameScreen();
+    }
   }, 2000);
 }
 var storedHighScores;
