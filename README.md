@@ -1,8 +1,11 @@
-# barbquiz
+# Barb Quiz
 
 This quiz tests your knowledge of the very one and only Queen Nicki Minaj. You get points by answering trivia questions right and you get penalized by subtracting seconds from your timer.
 
 
+[Barb Quiz](https://jtrevz.github.io/barbquiz/)
+
+![Quiz Display](https://user-images.githubusercontent.com/78758382/113085109-d8a09a00-91a4-11eb-9334-495c28bd4210.png)
 
 ## Timer
 
