@@ -1,15 +1,13 @@
 var barbQuestions = [
   {
-    q:
-      "When Queen Nicki was calling all Barbz, where was she making them report to?",
+    q: "When Queen Nicki was calling all Barbz, where was she making them report to?",
     a: "A Concert",
     b: "Her Live",
     c: "The Conference Room",
     d: "Trisha's House",
   },
   {
-    q:
-      "She's huge, but she's so beautiful. She's a mammoth of course 🙄. Who is she?",
+    q: "She's huge, but she's so beautiful. She's a mammoth of course 🙄. Who is she?",
     a: "Sid",
     b: "Steffie",
     c: "Trisha",
@@ -75,6 +73,7 @@ var submitBtn = document.getElementById("submit");
 var question = document.getElementById("question");
 var displayEndGameScreen = document.getElementById("endGameScreen");
 var playerSubmitBtn = document.getElementById("playersubmit");
+var playAgainBtn = document.getElementById("playAgain");
 
 var aButton = document.getElementById("label1");
 var bButton = document.getElementById("label2");
@@ -89,7 +88,8 @@ var rightDisplay = document.getElementById("right");
 var wrongDisplay = document.getElementById("wrong");
 var firedBtn = "";
 var timeEl = document.querySelector(".time");
-var secondsLeft = 40;
+var maxTime = 40;
+var secondsLeft;
 
 var player = document.getElementById("playerName");
 
@@ -105,28 +105,33 @@ function setTime() {
       endGameScreen();
     }
   }, 2000);
+  timeEl.textContent = secondsLeft;
 }
 var storedHighScores;
 
 function startQuiz() {
+  secondsLeft = maxTime;
+  score = 0;
   timeEl.textContent = secondsLeft;
   startBtn.classList.add("hide");
   quiz.classList.remove("hide");
-  nextBtn.classList.remove("hide");
+
   document.getElementById("timer").classList.remove("hide");
 
   var storedHighScores = JSON.parse(localStorage.getItem("highscore"));
-
   if (storedHighScores !== null) {
-    highscore = storedHighScores;
+    highscores = storedHighScores;
   }
-  console.log(highscore[0]);
+
   setTime();
   displayQuestion();
 }
 
 function displayQuestion() {
+  // aButton.removeAttribute("readonly");
   if (currentQ > 8) {
+    nextBtn.classList.add("hide");
+    nextBtn.classList.add("hide");
     return;
   }
   question.innerText = barbQuestions[currentQ].q;
@@ -138,6 +143,10 @@ function displayQuestion() {
 
 function checkResults() {
   firedBtn = this.value;
+  aButton.disabled = true;
+  bButton.disabled = true;
+  cButton.disabled = true;
+  dButton.disabled = true;
 
   if (firedBtn === answers[currentQ]) {
     score++;
@@ -145,8 +154,11 @@ function checkResults() {
   } else {
     wrongDisplay.classList.remove("hide");
     // timer second penalty
-    secondsLeft = secondsLeft - 10;
+    secondsLeft = secondsLeft - 5;
     setTime();
+  }
+  if (currentQ < 8) {
+    nextBtn.classList.remove("hide");
   }
 }
 
@@ -155,6 +167,10 @@ choices.forEach(function (choice) {
 });
 
 function nextQuestion() {
+  aButton.disabled = false;
+  bButton.disabled = false;
+  cButton.disabled = false;
+  dButton.disabled = false;
   if (currentQ > 6) {
     nextBtn.classList.add("hide");
     submitBtn.classList.remove("hide");
@@ -167,16 +183,24 @@ function nextQuestion() {
   currentQ++;
   displayQuestion();
 }
+var highscores = [];
 var highscore = {};
 
 function saveNewScore(event) {
+  playerSubmitBtn.disabled = true;
+
   event.preventDefault();
   highscore = {
     player: player.value.trim(),
     score: score,
   };
-  localStorage.setItem("highscore", JSON.stringify(highscore));
-  console.log(highscore);
+  highscores.push(highscore);
+  highscores = highscores.sort(function (a, b) {
+    return b.score - a.score;
+  });
+  localStorage.setItem("highscore", JSON.stringify(highscores));
+  player.value = "";
+  renderHighScores();
 }
 
 function endGameScreen() {
@@ -186,17 +210,19 @@ function endGameScreen() {
   displayEndGameScreen.classList.add("endGameScreen");
   document.getElementById("timer").classList.add("hide");
   document.getElementById("pinkScore").textContent = score;
+  renderHighScores();
 }
 
 function renderHighScores() {
   hslist.innerHTML = "";
-  for (i = 0; i < hslist.length; i++) {
-    var hs = highscore[i];
+  for (var i = 0; i < highscores.length; i++) {
+    var liEl = document.createElement("li");
+    liEl.textContent = highscores[i].player + ": " + highscores[i].score;
+    liEl.setAttribute("class", "hs-list-item");
+    hslist.appendChild(liEl);
   }
 }
 
 nextBtn.addEventListener("click", nextQuestion);
 submitBtn.addEventListener("click", endGameScreen);
 playerSubmitBtn.addEventListener("click", saveNewScore);
-
-console.log(highscore[0]);

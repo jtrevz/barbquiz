@@ -25,12 +25,14 @@
     <div id="gameOn" class="content">
       <div><button id="startButton">Start</button></div>
       <div id="quiz" class="hide">
+        <div id="question">Question</div>
         <div class="choices">
-          <div id="question">Question</div>
-          <button class="choice" id="label1" value="a">Answer1</button>
-          <button class="choice" id="label2" value="b">Answer2</button>
-          <button class="choice" id="label3" value="c">Answer3</button>
-          <button class="choice" id="label4" value="d">Answer4</button>
+          <div>
+            <button class="choice" id="label1" value="a">Answer1</button>
+            <button class="choice" id="label2" value="b">Answer2</button>
+            <button class="choice" id="label3" value="c">Answer3</button>
+            <button class="choice" id="label4" value="d">Answer4</button>
+          </div>
         </div>
       </div>
 
@@ -39,7 +41,10 @@
         <button id="submit" class="hide">Submit</button>
       </div>
       <div id="right" class="results hide"><h1>Correct!</h1></div>
-      <div id="wrong" class="results hide"><h1>Wrong!</h1></div>
+      <div id="wrong" class="results hide">
+        <h1>Wrong!</h1>
+        <h2>-5 seconds</h2>
+      </div>
     </div>
     <div id="endGameScreen" class="hide">
       <div class="highScoreBox">
@@ -53,15 +58,21 @@
           <h1 id="pinkScore"></h1>
         </div>
         <label for="playerName">Player Name:</label>
-        <textarea id="playerName" name="playerName"></textarea>
+        <input id="playerName" name="playerName"></input>
         <button id="playersubmit" class="button">Submit Player Score</button>
+        <button
+          id="playAgain"
+          onClick="window.location.href=window.location.href"
+          class="button"
+        >
+          Play Again
+        </button>
       </div>
       <div class="highScoreBox">
         <img
           id="highScoreBox"
           src="https://fontmeme.com/permalink/210330/9d23c78385f978ae62f6d5f0ba2ff645.png"
           alt="barbie-font"
-          border="0"
         />
         <ul id="highScoreList"></ul>
       </div>

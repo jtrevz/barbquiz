@@ -28,7 +28,6 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: fill;
   height: 60vh;
   margin-top: 20px;
   padding: 5%;
@@ -44,6 +43,10 @@ button {
   border-style: outset;
 }
 
+button:hover {
+  cursor: pointer;
+}
+
 #question {
   font-size: 150%;
   margin: 10px;
@@ -55,6 +58,12 @@ button {
   background-color: var(--lPink);
   border-radius: 10px;
   border-style: outset;
+  color: #e9609b;
+}
+
+.choices {
+  display: flex;
+  flex-direction: column;
 }
 
 img {
@@ -66,6 +75,11 @@ img {
 }
 
 .results h1 {
+  color: #e9609b;
+  text-align: center;
+}
+
+.results h2 {
   color: #e9609b;
 }
 
@@ -108,4 +122,14 @@ img {
   padding: 13%;
   color: #e9609b;
   border-radius: 10px;
+}
+
+#highScoreList {
+  list-style-type: none !important;
+}
+
+.hs-list-item {
+  color: #e9609b;
+  font-size: 25px;
+  padding-bottom: 6%;
 }
